@@ -1,5 +1,5 @@
 # OutdoorLighting
-Python scripts used to automatically turn outdoor lighting on/off from a Raspberry Pi.<br>
+Python scripts used to automatically turn outdoor lighting on/off from a Raspberry Pi. Utilizes the Sunrise Sunset REST API to return times in JSON (https://sunrise-sunset.org/).<br>
 <br>
 Uses the following packges:<br>
 python 3<br>
