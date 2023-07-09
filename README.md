@@ -3,11 +3,15 @@ Python scripts used to automatically turn outdoor lighting on/off from a Raspber
 <br>
 <br>
 Uses the following packges:<br>
-python 3<br>
-pip3<br>
-python-requests<br>
-python-dateutil<br>
+Set the pi to utilize UTC (sudo raspi-config, Localisation Options, Timezone, None of the Above, UTC)<br>
+Enable GPIO pins (sudo raspi-config, Interface Options, I2C, Yes) (sudo raspi-config, Interface Options, SPI, Yes)<br>
+sudo apt-get install python3-pip<br>
+sudo apt-get install at<br>
+pip3 install requests<br>
+pip3 install python-dateutil<br>
+pip3 install pytz<br>
 <br>
 Using the following cron to run this script at 2 am everyday and on system reboot (crontab -e):<br>
 0 2 * * * /home/pi/OutdoorLighting/OutdoorLighting.py<br>
+@reboot /home/pi/OutdoorLighting/LightsOff.py<br>
 @reboot /home/pi/OutdoorLighting/OutdoorLighting.py<br>
