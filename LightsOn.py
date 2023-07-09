@@ -1,6 +1,6 @@
-import os
+import RPi.GPIO as GPIO
 
-LightingGPIOPin = 7
-
-mycmd = 'gpio write ' + str(LightingGPIOPin) + ' 1' #Turn lights on
-os.system(mycmd)
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(23, GPIO.OUT)
+GPIO.output(23, 1)
