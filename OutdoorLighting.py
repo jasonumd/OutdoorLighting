@@ -27,7 +27,7 @@ from pytz import timezone
 import os
 
 BufferTimeMinutes = 10
-myCmdLightsOn = 'python3 /home/pi/OutdoorLighting/LightsOff.py'
+myCmdLightsOn = 'python3 /home/pi/OutdoorLighting/LightsOn.py'
 myCmdLightsOff = 'python3 /home/pi/OutdoorLighting/LightsOff.py'
 
 #Step 1: Get now.
@@ -65,7 +65,8 @@ print('sunsetLightsOnUtc: ' + str(sunsetLightsOnUtc))
 
 #Step 4: Turn lights on if the system is rebooted during period when they should be on.
 if (nowUtc < sunriseLightsOffUtc) or (nowUtc > sunsetLightsOnUtc): #Turn lights on, need to set turning them on/off. Standard case of the 1 am daily cron.
-	os.system(myCmdLightsOn)
+    print('Turning on lights that should be on')
+    os.system(myCmdLightsOn)
 
 #Step 5: Set future off/on in UTC.
 fmt = '%H:%M %Y-%m-%d'
@@ -73,7 +74,8 @@ fmt = '%H:%M %Y-%m-%d'
 #If rebooted, these times could be in the past in which case the cmd will error out but not cause problems.
 myCmd = myCmdLightsOff + ' | at ' + sunriseLightsOffUtc.strftime(fmt)
 print(myCmd)
-os.system(myCmdLightsOff + ' | at ' + sunriseLightsOffUtc.strftime(fmt))
+os.system(myCmd)
 
 myCmd = myCmdLightsOn + ' | at ' + sunsetLightsOnUtc.strftime(fmt)
+print(myCmd)
 os.system(myCmd)
