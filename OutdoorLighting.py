@@ -3,6 +3,10 @@
 # @reboot /home/pi/OutdoorLighting/LightsOff.py
 # @reboot /home/pi/OutdoorLighting/OutdoorLighting.py
 
+# chmod +x OutdoorLighting.py
+# chmod +x LightsOff.py
+# chmod +x LightsOn.py
+
 # Set the pi to utilize UTC (sudo raspi-config, Localisation Options, Timezone, None of the Above, UTC)
 # Enable GPIO pins (sudo raspi-config, Interface Options, I2C, Yes) (sudo raspi-config, Interface Options, SPI, Yes)
 # sudo apt-get install python3-pip
@@ -27,8 +31,8 @@ from pytz import timezone
 import os
 
 BufferTimeMinutes = 10
-myCmdLightsOn = 'python3 /home/pi/OutdoorLighting/LightsOn.py'
-myCmdLightsOff = 'python3 /home/pi/OutdoorLighting/LightsOff.py'
+myCmdLightsOn = '/home/pi/OutdoorLighting/LightsOn.py'
+myCmdLightsOff = '/home/pi/OutdoorLighting/LightsOff.py'
 
 #Step 1: Get now.
 nowUtc = datetime.utcnow() #Could also use now() as the pi will operate in UTC.
@@ -75,6 +79,7 @@ fmt = '%H:%M %Y-%m-%d'
 myCmd = myCmdLightsOff + ' | at ' + sunriseLightsOffUtc.strftime(fmt)
 print(myCmd)
 os.system(myCmd)
+
 
 myCmd = myCmdLightsOn + ' | at ' + sunsetLightsOnUtc.strftime(fmt)
 print(myCmd)
