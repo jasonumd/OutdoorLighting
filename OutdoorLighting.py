@@ -31,8 +31,8 @@ from pytz import timezone
 import os
 
 BufferTimeMinutes = 10
-myCmdLightsOn = '/home/pi/OutdoorLighting/LightsOn.py'
-myCmdLightsOff = '/home/pi/OutdoorLighting/LightsOff.py'
+myCmdLightsOn = 'echo python3 /home/pi/OutdoorLighting/LightsOn.py'
+myCmdLightsOff = 'echo python3 /home/pi/OutdoorLighting/LightsOff.py'
 
 #Step 1: Get now.
 nowUtc = datetime.utcnow() #Could also use now() as the pi will operate in UTC.
